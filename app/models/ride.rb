@@ -18,7 +18,7 @@ class Ride < ActiveRecord::Base
     end
   end
 
-  private
+
 
   def poor
     self.user.tickets < self.attraction.tickets
