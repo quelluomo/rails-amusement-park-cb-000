@@ -6,41 +6,41 @@ class Ride < ActiveRecord::Base
   #validates :user_id, :attraction_id, presence: true
 
   def take_ride
-    if poor && short
+    if self.poor && self.short
       "Sorry. You do not have enough tickets to ride the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
-    elsif poor
+    elsif self.poor
       "Sorry. You do not have enough tickets to ride the #{attraction.name}."
-    elsif short
+    elsif self.short
       "Sorry. You are not tall enough to ride the #{attraction.name}."
     else
-      ride_taken
+      self.ride_taken
       "Thanks for riding the #{attraction.name}."
     end
   end
 
   private
 
-  def poor
+  def self.poor
     self.user.tickets < self.attraction.tickets
   end
 
-  def short
+  def self.short
     self.user.height < self.attraction.min_height
   end
 
-  def new_tickets
+  def self.new_tickets
     self.user.tickets -= self.attraction.tickets
   end
 
-  def new_nausea
+  def self.new_nausea
     user.nausea += self.attraction.nausea_rating
   end
 
-  def new_happiness
+  def self.new_happiness
     self.user.happiness += self.attraction.happiness_rating
   end
 
-  def ride_taken
+  def self.ride_taken
     self.user.update(:tickets => new_tickets, :nausea => new_nausea, :happiness => new_happiness)
   end
 
