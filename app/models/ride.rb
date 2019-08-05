@@ -7,14 +7,14 @@ class Ride < ActiveRecord::Base
 
   def take_ride
     if poor && short
-      "Sorry. You do not have enough tickets to ride the #{attraction.name}. You are not tall enough to ride the #{attraction.name}."
+      "Sorry. You do not have enough tickets to ride the #{self.attraction.name}. You are not tall enough to ride the #{self.attraction.name}."
     elsif poor
-      "Sorry. You do not have enough tickets to ride the #{attraction.name}."
+      "Sorry. You do not have enough tickets to ride the #{self.attraction.name}."
     elsif short
-      "Sorry. You are not tall enough to ride the #{attraction.name}."
+      "Sorry. You are not tall enough to ride the #{self.attraction.name}."
     else
       ride_taken
-      "Thanks for riding the #{attraction.name}."
+      "Thanks for riding the #{self.attraction.name}."
     end
   end
 
@@ -33,7 +33,7 @@ class Ride < ActiveRecord::Base
   end
 
   def new_nausea
-    user.nausea += self.attraction.nausea_rating
+    self.user.nausea += self.attraction.nausea_rating
   end
 
   def new_happiness
