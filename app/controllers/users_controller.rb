@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @message = params[:message] if params[:message]
     @message ||= false
+    @user = current_user
   end
 
   def edit
