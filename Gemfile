@@ -42,9 +42,10 @@ group :test, :development do
   gem "sprockets_better_errors"
   gem "binding_of_caller"
   gem "factory_girl_rails"
+  gem "factory_bot"
   gem "simplecov"
   gem "database_cleaner"
-  gem "sqlite3"
+  gem "sqlite3", "~>1.3.6"
   gem "pry"
   gem "rack_session_access"
 end
