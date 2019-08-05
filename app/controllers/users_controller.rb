@@ -15,13 +15,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-    @user = User.find(params[:id])
     @message = params[:message] if params[:message]
     @message ||= false
-    else
-      redirect_to rooth_path
-    end
   end
 
   def edit
